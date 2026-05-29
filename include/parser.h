@@ -7,4 +7,4 @@ char **parse_line(char *line);
 
 void free_args(char **args);
 
-#endif //MINI_SHELL_PARSER_H
+#endif // MINI_SHELL_PARSER_H

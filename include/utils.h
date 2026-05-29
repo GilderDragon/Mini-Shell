@@ -7,4 +7,4 @@ char *tilde_expand(const char *path);
 
 int print_colored(const char *text, const char *color);
 
-#endif //MINI_SHELL_UTILS_H
+#endif // MINI_SHELL_UTILS_H

@@ -4,8 +4,8 @@
 #define EXIT (-1)
 
 typedef struct {
-    const char *name;
-    int (*func)(char **args);
+  const char *name;
+  int (*func)(char **args);
 } builtin_func_t;
 
 extern builtin_func_t builtins[];
@@ -20,4 +20,4 @@ int shell_pwd(char **args);
 
 int count_builtins(void);
 
-#endif //MINI_SHELL_BUILTINS_H
+#endif // MINI_SHELL_BUILTINS_H

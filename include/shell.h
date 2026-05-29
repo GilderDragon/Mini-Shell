@@ -3,4 +3,4 @@
 
 void shell_loop(void);
 
-#endif //MINI_SHELL_SHELL_H
+#endif // MINI_SHELL_SHELL_H

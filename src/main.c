@@ -1,6 +1,6 @@
 #include "shell.h"
 
 int main(void) {
-    shell_loop();
-    return 0;
+  shell_loop();
+  return 0;
 }
