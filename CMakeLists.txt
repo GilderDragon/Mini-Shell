@@ -11,6 +11,7 @@ set(SOURCES
         src/builtins.c
         src/executor.c
         src/parser.c
+        src/shell.c
 )
 
 add_executable(Mini_Shell ${SOURCES})
