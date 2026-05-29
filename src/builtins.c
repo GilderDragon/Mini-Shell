@@ -37,7 +37,7 @@ int shell_cd(char **args) {
         }
     }
 
-    if (chdir(args[1]) != 0) {
+    if (chdir(path) != 0) {
         perror("shell");
         return errno;
     }
