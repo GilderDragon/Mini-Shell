@@ -27,9 +27,14 @@ int shell_exit(char **args) {
 }
 
 int shell_cd(char **args) {
-    if (args[1] == NULL) {
-        fprintf(stderr, "shell: Invalid argument\n");
-        return EINVAL;
+    const char *path = args[1];
+
+    if (path == NULL) {
+        path = getenv("HOME");
+        if (path == NULL) {
+            fprintf(stderr, "shell: Invalid argument\n");
+            return EINVAL;
+        }
     }
 
     if (chdir(args[1]) != 0) {
