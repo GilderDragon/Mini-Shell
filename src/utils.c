@@ -11,13 +11,25 @@ char *get_prompt(void) {
     char cwd[512];
     const char *display_path = cwd;
 
+    char username[256] = "user";
+    char hostname[256] = "host";
+
+    uid_t uid = getuid();
+    struct passwd *pw = getpwuid(uid);
+    if (pw && pw->pw_name) {
+        snprintf(username, sizeof(username), "%s", pw->pw_name);
+    }
+
+    if (gethostname(hostname, sizeof(hostname))) {
+        strcpy(hostname, "host");
+    }
+
     if (!getcwd(cwd, sizeof(cwd))) {
         strcpy(cwd, "?");
     } else {
         const char *home = getenv("HOME");
-        if (!home) {
-            struct passwd *pw = getpwuid(getuid());
-            home = pw ? pw->pw_dir : NULL;
+        if (!home && pw) {
+            home = pw->pw_dir;
         }
 
         if (home) {
@@ -33,7 +45,11 @@ char *get_prompt(void) {
         }
     }
 
-    snprintf(prompt, sizeof(prompt), "\033[1;32miu7-shell\033[0m:\033[1;34m%s\033[0m> ", display_path);
+    const char sign = uid == 0 ? '#' : '$';
+
+    snprintf(prompt, sizeof(prompt),
+        "\033[1;32m%s@%s\033[0m:\033[1;34m%s\033[0m%c ",
+        username, hostname, display_path, sign);
 
     return prompt;
 }
