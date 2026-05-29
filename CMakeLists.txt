@@ -10,6 +10,7 @@ set(SOURCES
         src/main.c
         src/builtins.c
         src/executor.c
+        src/parser.c
 )
 
 add_executable(Mini_Shell ${SOURCES})
