@@ -1,5 +1,5 @@
-#ifndef MINI_SHELL_BUILTIN_FUNCTIONS_H
-#define MINI_SHELL_BUILTIN_FUNCTIONS_H
+#ifndef MINI_SHELL_BUILTINS_H
+#define MINI_SHELL_BUILTINS_H
 
 #define EXIT (-1)
 
@@ -20,4 +20,4 @@ int shell_pwd(char **args);
 
 int count_builtins(void);
 
-#endif //MINI_SHELL_BUILTIN_FUNCTIONS_H
+#endif //MINI_SHELL_BUILTINS_H

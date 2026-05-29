@@ -1,4 +1,5 @@
-#include "runtime.h"
+#include "executor.h"
+#include "builtins.h"
 
 #include <errno.h>
 #include <unistd.h>
@@ -7,7 +8,6 @@
 #include <sys/types.h>
 #include <sys/wait.h>
 
-#include "builtin_functions.h"
 
 int execute_command(char **args) {
 

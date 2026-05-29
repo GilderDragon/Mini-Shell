@@ -2,7 +2,7 @@
 #include <stdlib.h>
 #include <unistd.h>
 
-#include "builtin_functions.h"
+#include "builtins.h"
 
 builtin_func_t builtins[] = {
     {"help", &shell_help},
