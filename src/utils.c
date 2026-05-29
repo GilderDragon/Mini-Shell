@@ -3,6 +3,7 @@
 #include <stdio.h>
 #include <unistd.h>
 #include <stdlib.h>
+#include <string.h>
 #include <pwd.h>
 
 char *get_prompt(void) {
@@ -39,5 +40,5 @@ char *tilde_expand(const char *path) {
 }
 
 int print_colored(const char *text, const char *color) {
-    return printf("%s%s%s", color, text, COLOR_RESET);
+    return printf("%s%s\033[0m", color, text);
 }
