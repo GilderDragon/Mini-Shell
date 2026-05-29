@@ -1,10 +1,10 @@
 #ifndef MINI_SHELL_BUILTIN_FUNCTIONS_H
 #define MINI_SHELL_BUILTIN_FUNCTIONS_H
 
-#define EXIT 1
+#define EXIT (-1)
 
 typedef struct {
-    char *name;
+    const char *name;
     int (*func)(char **args);
 } builtin_func_t;
 
