@@ -3,6 +3,7 @@
 #include <unistd.h>
 
 #include "builtins.h"
+#include "utils.h"
 
 builtin_func_t builtins[] = {
     {"help", &shell_help},
@@ -29,9 +30,15 @@ int shell_exit(char **args) {
 int shell_cd(char **args) {
     const char *path = args[1];
 
-    if (path == NULL) {
+    if (!path) {
         path = getenv("HOME");
-        if (path == NULL) {
+        if (!path) {
+            fprintf(stderr, "shell: Invalid argument\n");
+            return EINVAL;
+        }
+    } else {
+        path = tilde_expand(args[1]);
+        if (!path) {
             fprintf(stderr, "shell: Invalid argument\n");
             return EINVAL;
         }
