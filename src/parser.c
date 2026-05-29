@@ -1,15 +1,17 @@
 #include "parser.h"
+#include "utils.h"
 
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
+
 
 #define MAX_LINE 1024
 
 char *read_line(void) {
     char line[MAX_LINE];
 
-    printf("iu7-shell> ");
+    printf("%s", get_prompt());
     fflush(stdout);
 
     if (!fgets(line, MAX_LINE, stdin)) {

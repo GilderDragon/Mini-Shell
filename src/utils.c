@@ -5,10 +5,6 @@
 #include <stdlib.h>
 #include <pwd.h>
 
-#define COLOR_GREEN "\033[1;32m"
-#define COLOR_BLUE "\033[1;34m"
-#define COLOR_RESET "\033[0m"
-
 char *get_prompt(void) {
     static char prompt[1024];
     char cwd[512];
@@ -17,7 +13,7 @@ char *get_prompt(void) {
         strcpy(cwd, "?");
     }
 
-    snprintf(prompt, sizeof(prompt), "%siu7-shell:%s> %s", COLOR_GREEN, COLOR_RESET, cwd);
+    snprintf(prompt, sizeof(prompt), "\033[1;32miu7-shell\033[0m:>\033[1;34m%s\033[0m> ", cwd);
 
     return prompt;
 }

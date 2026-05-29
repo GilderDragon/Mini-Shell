@@ -3,17 +3,15 @@
 #include <stdio.h>
 #include <stdlib.h>
 
-#include "builtins.h"
 #include "executor.h"
 #include "parser.h"
 
 void shell_loop(void) {
-    int status = 0;
 
     printf("=== Mini-Shell v0.1 ===\n");
     printf("Type 'help' for available commands. Ctrl+D to exit\n\n");
 
-    while (status != EXIT) {
+    while (1) {
         char *line = read_line();
         if (!line) {
             printf("\n");
@@ -22,7 +20,7 @@ void shell_loop(void) {
 
         char **args = parse_line(line);
         if (args && args[0]) {
-            status = execute_command(args);
+            execute_command(args);
         }
 
         free_args(args);
