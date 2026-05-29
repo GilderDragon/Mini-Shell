@@ -4,8 +4,8 @@
 #define EXIT (-1)
 
 typedef struct {
-  const char *name;
-  int (*func)(char **args);
+    const char *name;
+    int (*func)(char **args);
 } builtin_func_t;
 
 extern builtin_func_t builtins[];

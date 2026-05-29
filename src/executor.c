@@ -10,57 +10,57 @@
 
 int execute_command(char **args) {
 
-  if (args[0] == NULL) {
-    return 0;
-  }
+    if (args[0] == NULL) {
+        return 0;
+    }
 
-  const int rc = execute_builtin(args);
+    const int rc = execute_builtin(args);
 
-  if (rc == EXIT) {
-    exit(EXIT);
-  }
+    if (rc == EXIT) {
+        exit(EXIT);
+    }
 
-  if (rc == NOT_FOUND) {
-    return execute_external(args);
-  }
+    if (rc == NOT_FOUND) {
+        return execute_external(args);
+    }
 
-  return rc;
+    return rc;
 }
 
 int execute_builtin(char **args) {
-  for (int i = 0; i < count_builtins(); i++) {
-    if (strcmp(args[0], builtins[i].name) == 0) {
-      return builtins[i].func(args);
+    for (int i = 0; i < count_builtins(); i++) {
+        if (strcmp(args[0], builtins[i].name) == 0) {
+            return builtins[i].func(args);
+        }
     }
-  }
 
-  return NOT_FOUND;
+    return NOT_FOUND;
 }
 
 int execute_external(char **args) {
-  pid_t pid = fork();
+    pid_t pid = fork();
 
-  if (pid < 0) {
-    perror("shell");
-    return errno;
-  }
-
-  if (pid == 0) {
-    if (execvp(args[0], args) == -1) {
-      perror("shell");
-      exit(EXIT_FAILURE);
+    if (pid < 0) {
+        perror("shell");
+        return errno;
     }
-  }
 
-  int status;
-  if (waitpid(pid, &status, 0) == -1) {
-    perror("shell");
-    return errno;
-  }
+    if (pid == 0) {
+        if (execvp(args[0], args) == -1) {
+            perror("shell");
+            exit(EXIT_FAILURE);
+        }
+    }
 
-  if (WIFEXITED(status)) {
-    return WEXITSTATUS(status);
-  }
+    int status;
+    if (waitpid(pid, &status, 0) == -1) {
+        perror("shell");
+        return errno;
+    }
 
-  return 0;
+    if (WIFEXITED(status)) {
+        return WEXITSTATUS(status);
+    }
+
+    return 0;
 }
